@@ -1,6 +1,6 @@
 <template>
-  <div class="grid grid-cols-2 gap-5">
-    <div class="border-r-2 px-5">
+  <div class="grid sm:grid-cols-2 gap-5">
+    <div class="sm:border-r-2 px-5">
       <div class="relative group">
         <img
           class="w-full max-h-[600px] object-cover"
@@ -17,11 +17,28 @@
       <span class="text-xs text-gray-400"
         >Display Date: {{ artwork.date_display }}</span
       >
-      <span class="group-hover:opacity-100 block"
-        >Dimensions: {{ artwork.dimensions }}</span
-      >
+      <div class="grid grid-cols-2 mt-4 border-y-2 py-2">
+        <p class="font-medium">Artist:</p>
+        <p>{{ artwork.artist_title }}</p>
+      </div>
+      <div class="grid grid-cols-2 border-b-2 py-2">
+        <p class="font-medium">Place:</p>
+        <p>{{ artwork.place_of_origin }}</p>
+      </div>
+      <div class="grid grid-cols-2 border-b-2 py-2">
+        <p class="font-medium">Date:</p>
+        <p>{{ artwork.date_start }}-{{ artwork.date_end }}</p>
+      </div>
+      <div class="grid grid-cols-2 border-b-2 py-2">
+        <p class="font-medium">Dimensions:</p>
+        <p>{{ artwork.dimensions }}</p>
+      </div>
+      <div class="grid grid-cols-2 border-b-2 py-2">
+        <p class="font-medium">Credit Line:</p>
+        <p>{{ artwork.credit_line }}</p>
+      </div>
     </div>
-    <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 px-5 sm:px-0">
       <h1 class="font-bold text-2xl">
         {{ artwork.title }}
         <span class="text-xs text-gray-400"
