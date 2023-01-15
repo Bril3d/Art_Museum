@@ -1,45 +1,45 @@
 <template>
-  <div>
-    <FlexTitle>ARTWORKS</FlexTitle>
-    <div v-if="pending" class="flex flex-wrap justify-center gap-5">
-    <AnimatedPlaceholder class="w-[248px] h-[256px] shadow-sm rounded-md" v-for="index in 30" />
-    </div>
-    <div class="flex flex-wrap justify-center gap-5" v-else>
-      <ArtCard
-        v-for="artwork in artworks.data"
-        :key="artwork.id"
-        :artwork="artwork"
-        @click="selectArtwork(artwork)"
-      />
-    </div>
-    <div class="flex justify-center mt-10">
-      <div
-        class="px-5 py-2 bg-emerald-500 hover:bg-emerald-600 transition-colors ease-in text-white rounded-full cursor-pointer w-fit"
-        @click="loadMore($event)"
-      >
-        Load More
-      </div>
-    </div>
-  </div>
+   <FlexTitle>ARTWORKS</FlexTitle>
+  <swiper class="w-full"
+  :modules="[SwiperAutoplay, SwiperNavigation, SwiperEffectFade]"
+  :slides-per-view="3"
+  :loop="true"
+    :autoplay="{
+      delay: 8000,
+      disableOnInteraction: true,
+    }"
+    effect="fade"
+    navigation
+  >
+    <SwiperSlide v-for="artwork in artworks.data" :key="artwork.id">
+      <img class="w-full object-cover h-[800px]" :src="`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`" alt="">
+    </SwiperSlide>
+  </swiper>
+  <FlexTitle class="mt-5">PRODUCTS</FlexTitle>
+  <swiper class="w-full"
+  :modules="[SwiperAutoplay, SwiperNavigation, SwiperEffectFade]"
+  :slides-per-view="3"
+  :loop="true"
+    :autoplay="{
+      delay: 8000,
+      disableOnInteraction: true,
+    }"
+    effect="fade"
+    navigation
+  >
+    <SwiperSlide v-for="product in products.data" :key="product.id">
+      <img class="w-full object-cover h-[500px]" :src="product.image_url" alt="">
+    </SwiperSlide>
+  </swiper>
 </template>
 
 <script setup>
-const router = useRouter();
-function selectArtwork(artwork) {
-  router.push({ path: `/artworks/${artwork.id}` });
-}
-
-const { pending, data: artworks } = await useLazyFetch(
-  "https://api.artic.edu/api/v1/artworks?page=1&limit=30"
+const {data: artworks } = await useFetch(
+  "https://api.artic.edu/api/v1/artworks?limit=10"
 );
-async function loadMore(e) {
-  e.target.textContent = 'Loading...';
-  const { data: next } = await useFetch(artworks.value.pagination.next_url);
-  e.target.textContent = 'Load More';
-  artworks.value.data.push(...next.value.data);
-  artworks.value.pagination = next.value.pagination;
-  
-}
+const {data: products } = await useFetch(
+  "https://api.artic.edu/api/v1/products?limit=10"
+);
 </script>
 
 <style scoped></style>

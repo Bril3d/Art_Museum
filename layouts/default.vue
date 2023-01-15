@@ -5,14 +5,21 @@
       <li
         class="transition-colors ease-in px-2 py-3 cursor-pointer text-center hover:bg-gray-200 min-w-[200px]"
       >
-        Artworks
+        Home
       </li>
     </NuxtLink>
-    <NuxtLink to="/iiif">
+      <NuxtLink to="/artworks">
       <li
         class="transition-colors ease-in px-2 py-3 cursor-pointer text-center hover:bg-gray-200 min-w-[200px]"
       >
-        IIIF
+        Artworks
+      </li>
+    </NuxtLink>
+    <NuxtLink to="/products">
+      <li
+        class="transition-colors ease-in px-2 py-3 cursor-pointer text-center hover:bg-gray-200 min-w-[200px]"
+      >
+        Products
       </li>
     </NuxtLink>
     </ul>

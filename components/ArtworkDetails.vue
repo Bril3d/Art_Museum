@@ -3,7 +3,7 @@
     <div class="sm:border-r-2 px-5">
       <div class="relative group">
         <img
-          class="w-full max-h-[600px] object-cover"
+          class="w-full max-h-[600px] object-cover border"
           :src="`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`"
           :alt="artwork.thumbnail.alt_text"
         />
