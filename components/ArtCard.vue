@@ -6,7 +6,7 @@
       <img
         class="h-[200px] w-[200px] object-cover"
         :src="`https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`"
-        :alt="artwork.thumbnail.alt_text"
+        :alt="artwork.thumbnail?.alt_text"
       />
     </div>
     <div
