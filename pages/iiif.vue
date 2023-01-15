@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <FlexTitle>IIIF</FlexTitle>
     </div>
 </template>
 
